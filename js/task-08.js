@@ -29,30 +29,17 @@ const form = document.querySelector(".login-form");
 form.addEventListener("submit", onSubmit);
 function onSubmit(event) {
   event.preventDefault();
-  console.dir(form);
-  // form.elements.email.addEventListener("input", onInputEmail);
-  // form.elements.password.addEventListener("input", onInputPass);
-
-  // function onInputEmail(event) {
-  //   let inputValeu = event.target.value;
-  //   console.log(event.target.value);
-  // }
-  // function onInputPass(event) {
-  //   let inputPass = event.target.value;
-  //   console.log(event.target.value);
-  // }
   const {
     elements: { email, password },
   } = event.currentTarget;
 
   if (email.value === "" || password.value === "") {
-    alert("Всі поля повинні бути заповнені!");
+    return alert("Всі поля повинні бути заповнені!");
   }
   const data = {
     email: email.value,
     password: password.value,
   };
-
-  console.dir(data);
+  // console.dir(data);
   form.reset();
 }

@@ -14,14 +14,11 @@
   |                        solution
   |====================================================
 */
-// const inputName = document.getElementById(name - input);
 const inName = document.querySelector("#name-input");
-// const spanNameOutput = document.getElementById(name - output);
 const spanName = document.querySelector("#name-output");
-
 let ananimus = "Anonymous";
 
 inName.addEventListener("input", onInput);
 function onInput(event) {
-  spanName.textContent = event.target.value || ananimus;
+  spanName.textContent = event.target.value.trim() || ananimus;
 }

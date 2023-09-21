@@ -1,5 +1,6 @@
 // Задание 6
-// Напиши скрипт, который при потере фокуса на инпуте (событие blur), проверяет его содержимое на правильное количество введённых символов.
+// Напиши скрипт, который при потере фокуса на инпуте (событие blur), проверяет
+//  его содержимое на правильное количество введённых символов.
 
 // <input
 //   type="text"
@@ -29,11 +30,11 @@
   |===========================================================
 */
 const inputEl = document.querySelector("#validation-input");
-let numberInput = inputEl.dataset.length;
-
-inputEl.addEventListener("change", onInput);
+let numberInput = Number(inputEl.dataset.length);
+console.log(numberInput);
+inputEl.addEventListener("blur", onInput);
 function onInput(event) {
-  if (event.target.value.length === +numberInput) {
+  if (event.target.value.trim().length === numberInput) {
     inputEl.classList.add("valid");
     inputEl.classList.remove("invalid");
   } else {

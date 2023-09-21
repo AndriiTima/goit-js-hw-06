@@ -18,12 +18,20 @@ const ingredients = [
 // Добавит элементу класс item.
 // После чего вставит все <li> за одну операцию в список ul#ingredients.
 
-const ulEl = document.createElement("ul");
+// const ulElement = document.querySelector("#ingredients");
+// const appIngredients = ingredients.reduce(
+//   (str, item) => str + `<li class = item>${item}</li>`,
+//   ""
+// );
+// ulElement.innerHTML = appIngredients;
 
-for (const ingredient of ingredients) {
+const parentElement = document.getElementById("ingredients");
+
+const markup = ingredients.map((item) => {
   const liEl = document.createElement("li");
-  liEl.textContent = ingredient;
+  liEl.textContent = item;
   liEl.classList.add("item");
-  ulEl.appendChild(liEl);
-}
-document.body.appendChild(ulEl);
+  return liEl;
+});
+parentElement.append(...markup);
+console.log(markup);

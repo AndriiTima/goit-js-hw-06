@@ -8,32 +8,31 @@ const boxes = document.getElementById("boxes");
 const inEl = document.querySelector("input");
 const buttonEl = document.querySelector("button[data-create]");
 const buttonElRemuve = document.querySelector("button[data-destroy]");
-
-// console.log(divEl);
-// console.log(boxes);
-// console.log(buttonEl);
-// console.log(inEl);
-// console.log(buttonElRemuve);
-
+const stepInput = Number(inEl.step);
 buttonEl.addEventListener("click", getAmount);
 buttonElRemuve.addEventListener("click", destroyBoxes);
 
 function getAmount() {
   let amount = parseInt(inEl.value);
-  createBoxes(amount);
-  console.log(amount);
+  const minInput = Number(inEl.min);
+  const maxInput = Number(inEl.max);
+
+  if (amount > maxInput || amount < minInput) {
+    alert("Please enter number from 1 to 100");
+  } else {
+    createBoxes(amount);
+  }
 }
 
 function createBoxes(amount) {
-  const basicNuber = 30;
-  const fragment = document.createDocumentFragment();
-  for (let i = 0; i < amount; i++) {
-    const size = basicNuber + i * 10;
-    const div = document.createElement("div");
-    div.style.cssText = `width: ${size}px; height: ${size}px; background-color: ${getRandomHexColor()} `;
-    fragment.appendChild(div);
+  let size = 30;
+  const boxesArr = [];
+  for (let i = 0; i < amount; i += stepInput) {
+    size += 10 * i;
+    const div = `<div class="item" style="display: block; margin-right: 20px; margin-bottom: 20px; background-color: ${getRandomHexColor()}; width: ${size}px; height: ${size}px;"></div>`;
+    boxesArr.push(div);
   }
-  boxes.appendChild(fragment);
+  boxes.insertAdjacentHTML("beforeend", boxesArr.join(""));
 }
 
 function destroyBoxes() {

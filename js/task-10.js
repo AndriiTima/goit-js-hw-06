@@ -37,6 +37,7 @@ function createBoxes(amount) {
 
 function destroyBoxes() {
   boxes.innerHTML = "";
+  inEl.value = "";
 }
 
 function getRandomHexColor() {
